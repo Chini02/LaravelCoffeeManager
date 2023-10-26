@@ -62,7 +62,9 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff; }
+  background-color: #fff; 
+  overflow-x: hidden;
+}
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -79,6 +81,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
+  color:#fff;
   margin-bottom: 1rem; }
 
 abbr[title],
