@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Products;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product\Product;
 
 class ProductsController extends Controller
 {
@@ -12,7 +13,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::select()->orderBy('id','desc')->take(4)->get();
+        return view('home',compact('products'));
     }
 
     /**
@@ -36,7 +38,8 @@ class ProductsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $product = Product::find($id);
+        return view("products.singleProduct", compact("product"));
     }
 
     /**

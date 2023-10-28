@@ -49,7 +49,7 @@
         </div>
       </div>
     </div>
-  </section>
+</section>
 
   <section class="ftco-intro">
       <div class="container-wrap">
@@ -280,10 +280,10 @@
                 <div class="menu-entry">
                       <a href="#" class="img" style="background-image: url({{ asset('assets/images/'. $product->image .'') }});"></a>
                       <div class="text text-center pt-4">
-                          <h3><a href="#">{{$product->name}}</a></h3>
+                          <h3><a href="{{ route('products.singleProduct', $product->id) }}">{{$product->name}}</a></h3>
                           <p>{{$product->description}}</p>
                           <p class="price"><span>${{$product->price}}.90</span></p>
-                          <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                          <p><a href="{{ route('products.singleProduct', $product->id) }}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                       </div>
                   </div>
               </center>
@@ -411,24 +411,5 @@
           </div>
         </div>
       </div>
-    </section>
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div> --}}
+  </section>
 @endsection

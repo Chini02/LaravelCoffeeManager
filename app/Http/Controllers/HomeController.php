@@ -24,7 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = Product::select()->orderBy('id','desc')->take(4)->get();
-        return view('home',compact('products'));
+        return view('home');
     }
 }
