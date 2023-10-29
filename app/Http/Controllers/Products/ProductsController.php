@@ -39,7 +39,8 @@ class ProductsController extends Controller
     public function show(string $id)
     {
         $product = Product::find($id);
-        return view("products.singleProduct", compact("product"));
+        $relatedProduct = Product::where('type',$product->type)->where('id','!=',$id)->orderBy('id','desc')->get();
+        return view("products.singleProduct", compact("product","relatedProduct"));
     }
 
     /**

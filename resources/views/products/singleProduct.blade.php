@@ -29,37 +29,9 @@
                   <h3>Creamy Latte Coffee</h3>
                   <p class="price"><span>${{ $product->price }}.90</span></p>
                   <p>{{$product->description}}</p>
-                      </p>
-                      <div class="row mt-4">
-                          {{-- <div class="col-md-6">
-                              <div class="form-group d-flex"> --}}
-                                {{-- <div class="select-wrap"> --}}
-                                    {{-- <div class="icon"><span class="ion-ios-arrow-down"></span></div> --}}
-                                        {{-- <select name="" id="" class="form-control">
-                                                <option value="">Small</option>
-                                                <option value="">Medium</option>
-                                                <option value="">Large</option>
-                                                <option value="">Extra Large</option>
-                                            </select> --}}
-                                {{-- </div> --}}
-                                {{-- </div>
-                          </div> --}}
-                            {{-- <div class="w-100"></div>
-                            <div class="input-group col-md-6 d-flex mb-3">
-                                <span class="input-group-btn mr-2">
-                                    <button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                                        <i class="icon-minus"></i>
-                                    </button>
-                                </span>
-                                <input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-                                <span class="input-group-btn ml-2">
-                                    <button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                                        <i class="icon-plus"></i>
-                                    </button>
-                                </span>
-                            </div> --}}
+                          
+                  <p><a href="cart" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
                 </div>
-                <p><a href="cart" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
             </div>
           </div>
       </div>
@@ -75,17 +47,22 @@
         </div>
       </div>
       <div class="row">
+        @foreach ($relatedProduct as $item)
+            
+        
           <div class="col-md-3">
               <div class="menu-entry">
-                      <a href="#" class="img" style="background-image: url(images/menu-1.jpg);"></a>
+                      <a href="#" class="img" style="background-image: url({{asset('assets/images/'. $item->image .'')}});"></a>
                       <div class="text text-center pt-4">
-                          <h3><a href="#">Coffee Capuccino</a></h3>
-                          <p>A small river named Duden flows by their place and supplies</p>
-                          <p class="price"><span>$5.90</span></p>
-                          <p><a href="#" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
+                          <h3><a href="{{ route('products.singleProduct', $item->id) }}">{{ $item->name }}</a></h3>
+                          <p>{{ $item->description }}</p>
+                          <p class="price"><span>${{ $item->price }}.90</span></p>
+                          <p><a href="{{ route('products.singleProduct', $item->id) }}" class="btn btn-primary btn-outline-primary">Add to Cart</a></p>
                       </div>
                   </div>
           </div>
+
+        @endforeach
       </div>
       </div>
   </section>
