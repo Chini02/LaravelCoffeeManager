@@ -29,8 +29,44 @@
                   <h3>Creamy Latte Coffee</h3>
                   <p class="price"><span>${{ $product->price }}.90</span></p>
                   <p>{{$product->description}}</p>
+                  <form action="{{ route('products.cart', ['id' => $product->id]) }}" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5">
+                    @csrf
+                    <div class="row align-items-end">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input id="" type="text" class="form-control" name="prd_id" value="{{ $product->id }}">
                           
-                  <p><a href="cart" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+                        </div>
+                      </div>             
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input id="" type="text" class="form-control" name="name" value="{{ $product->name }}">
+                          
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input id="" type="text" class="form-control" name="price" value="{{ $product->price }}">
+                          
+                        </div>
+                      </div>
+
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <input id="" type="text" class="form-control " name="image" value="{{ $product->image }}">
+                          
+                        </div>
+                      </div>
+        
+                      <div class="col-md-12">
+                        <div class="form-group mt-4">
+                          
+                            <button type="submit" name="Submit" class="btn btn-primary py-3 px-4 text-dark">Add To Cart</button>
+                          
+                        </div>
+                    </div>
+                  </form>
                 </div>
             </div>
           </div>

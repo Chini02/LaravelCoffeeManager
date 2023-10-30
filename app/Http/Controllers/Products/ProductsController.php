@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Products;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product\Product;
+use App\Models\Product\Cart;
+use Auth;
 
 class ProductsController extends Controller
 {
@@ -28,9 +30,17 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request , $id)
     {
-        //
+        $addToCart = Cart::create([
+            "user_id"  => Auth::user()->id,
+            "prd_id"   => $request->prd_id,
+            "name"     => $request->name,
+            "price"    => $request->price,
+            "image"    => $request->image,
+        ]);
+        return redirect()->route("products.singleProduct",$id);
+
     }
 
     /**

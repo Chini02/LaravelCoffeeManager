@@ -52,7 +52,7 @@
                     <button type="submit" class="btn btn-primary py-3 px-4">Login</button>
                   </div>
 					      </div>
-              </div>
+            </div>
 	        </form><!-- END -->
         </div> <!-- .col-md-8 -->
       </div>
