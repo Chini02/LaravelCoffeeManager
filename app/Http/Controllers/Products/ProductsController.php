@@ -39,7 +39,7 @@ class ProductsController extends Controller
             "price"    => $request->price,
             "image"    => $request->image,
         ]);
-        return redirect()->route("products.singleProduct",$id);
+        return redirect()->route("products.singleProduct",$id)->with(["sucsses"=>"Product Added To Cart"]);
 
     }
 
@@ -50,13 +50,14 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         $relatedProduct = Product::where('type',$product->type)->where('id','!=',$id)->orderBy('id','desc')->get();
-        return view("products.singleProduct", compact("product","relatedProduct"));
+        $checkCart = Cart::where('prd_id',$id)->where('user_id',Auth::user()->id)->count();
+        return view("products.singleProduct", compact("product","relatedProduct","checkCart"));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function cart()
     {
         //
     }

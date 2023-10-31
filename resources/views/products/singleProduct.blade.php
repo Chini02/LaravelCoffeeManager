@@ -18,7 +18,11 @@
       </div>
     </div>
   </section>
-
+  <div class="container">
+    @if ( Session::has("sucsses") )
+      <p class="alert {{ Session::get("alert-class","alert-info") }}">  {{ Session::get("sucsses") }} </p>
+    @endif
+  </div>
   <section class="ftco-section">
       <div class="container">
           <div class="row">
@@ -29,43 +33,40 @@
                   <h3>Creamy Latte Coffee</h3>
                   <p class="price"><span>${{ $product->price }}.90</span></p>
                   <p>{{$product->description}}</p>
-                  <form action="{{ route('products.cart', ['id' => $product->id]) }}" method="POST" class="billing-form ftco-bg-dark p-3 p-md-5">
+                  <form action="{{ route('products.cart', ['id' => $product->id]) }}" method="POST" >
                     @csrf
                     <div class="row align-items-end">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input id="" type="text" class="form-control" name="prd_id" value="{{ $product->id }}">
+                          <input id="" type="hidden" class="form-control" name="prd_id" value="{{ $product->id }}">
                           
                         </div>
                       </div>             
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input id="" type="text" class="form-control" name="name" value="{{ $product->name }}">
+                          <input id="" type="hidden" class="form-control" name="name" value="{{ $product->name }}">
                           
                         </div>
                       </div>
 
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input id="" type="text" class="form-control" name="price" value="{{ $product->price }}">
+                          <input id="" type="hidden" class="form-control" name="price" value="{{ $product->price }}">
                           
                         </div>
                       </div>
 
                       <div class="col-md-12">
                         <div class="form-group">
-                          <input id="" type="text" class="form-control " name="image" value="{{ $product->image }}">
+                          <input id="" type="hidden" class="form-control " name="image" value="{{ $product->image }}">
                           
                         </div>
                       </div>
-        
-                      <div class="col-md-12">
-                        <div class="form-group mt-4">
-                          
-                            <button type="submit" name="Submit" class="btn btn-primary py-3 px-4 text-dark">Add To Cart</button>
-                          
-                        </div>
-                    </div>
+                      @if ($checkCart == 0)
+                        <p><button style="color:black" type="submit" name="Submit" class="btn btn-primary py-3 px-5">Add to Cart</button></p>  
+                      @else
+                        <p><button style="color:black" class="btn btn-warning py-3 px-5" disabled>ALready in Cart</button></p>  
+                      @endif
                   </form>
                 </div>
             </div>
