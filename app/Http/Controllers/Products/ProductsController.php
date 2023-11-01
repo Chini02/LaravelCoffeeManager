@@ -59,7 +59,10 @@ class ProductsController extends Controller
      */
     public function cart()
     {
-        //
+        $prdInCart = Cart::where('user_id',Auth::user()->id)
+            ->orderBy('id','desc')
+            ->get();
+        return view('products.cart',compact('prdInCart'));
     }
 
     /**
