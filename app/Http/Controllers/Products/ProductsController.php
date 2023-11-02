@@ -59,11 +59,12 @@ class ProductsController extends Controller
      */
     public function cart()
     {
-        $prdInCart = Cart::where('user_id',Auth::user()->id)
-            ->orderBy('id','desc')
+        $prdInCart = Cart::where('user_id', Auth::user()->id)
+            ->orderBy('id', 'desc')
             ->get();
-        return view('products.cart',compact('prdInCart'));
+        return view('products.cart', compact('prdInCart'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -76,8 +77,10 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function deleteProductCart(string $id)
     {
-        //
+        $dePrdCart = Cart::where('prd_id', $id)->where('user_id', Auth::user()->id);
+        $dePrdCart->delete();
+        return view('products.cart',compact('dePrdCart'));
     }
 }

@@ -3,7 +3,7 @@
 @section('content')
 <section class="home-slider owl-carousel">
 
-      <div class="slider-item" style="background-image: url({{ asset('assets/images/bg_3.jpg') }});" data-stellar-background-ratio="0.5">
+      <div class="slider-item" style="background-image: url({{ asset('assets/images/bg_3.jpg') }});">
       	<div class="overlay"></div>
         <div class="container">
           <div class="row slider-text justify-content-center align-items-center">
@@ -23,9 +23,9 @@
 				<div class="row">
     			<div class="col-md-12 ftco-animate">
     				<div class="cart-list">
-	    				<table class="table">
-						    <thead class="thead-primary">
-						      <tr class="text-center">
+	    				<table class="table-dark" style="width:1100px; border-spacing: 0 10px;">
+						    <thead class="thead-primary" style="background-color: #c49b63; height: 60px; ">
+						      <tr class="text-center mt-2">
 						        <th>&nbsp;</th>
 						        <th>&nbsp;</th>
 						        <th>Product</th>
@@ -34,48 +34,31 @@
 						        <th>Total</th>
 						      </tr>
 						    </thead>
-						    <tbody>
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url({{ asset('assets/images/menu-2.jpg') }});"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Creamy Latte Coffee</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$4.90</td>
-						        
-						        <td>
-									<div class="input-group mb-3">
-										<input disabled type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-									 </div>
-					            </td>
-						        
-						        <td class="total">$4.90</td>
-						      </tr><!-- END TR-->
+						    <tbody style="margin-top: 10px;">
+								@foreach ($prdInCart  as $cartPRD)
+								<tr class="text-center" style="width:140px; margin-top: 20px">
+									<td class="product-remove"><a href="{{ route('products.cart.delete', $cartPRD->prd_id) }}"><span class="icon-close"></span></a></td>
+									
+									<td class="image-prod"><div class="img" style="background-image:url({{ asset('assets/images/'.$cartPRD->image.'') }});"></div></td>
+									
+									<td class="product-name">
+										<h3>{{ $cartPRD->name }}</h3>
+										<p>{{ $cartPRD->description }}</p>
+									</td>
+									
+									<td class="price">${{ $cartPRD->price }}.90</td>
+									
+									<td>
+										<div class="input-group mb-3 mt-3">
+											<input disabled type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
+										 </div>
+									</td>
+									
+									<td class="total">${{ $cartPRD->price }}.90</td>
+								  </tr>
+								@endforeach
+						      <!-- END TR-->
 
-						      <tr class="text-center">
-						        <td class="product-remove"><a href="#"><span class="icon-close"></span></a></td>
-						        
-						        <td class="image-prod"><div class="img" style="background-image:url({{ asset('assets/images/dish-2.jpg') }});"></div></td>
-						        
-						        <td class="product-name">
-						        	<h3>Grilled Ribs Beef</h3>
-						        	<p>Far far away, behind the word mountains, far from the countries</p>
-						        </td>
-						        
-						        <td class="price">$15.70</td>
-						        
-						        <td class="quantity">
-						        	<div class="input-group mb-3">
-					             	<input disabled type="text" name="quantity" class="quantity form-control input-number" value="1" min="1" max="100">
-					          	</div>
-					          </td>
-						        
-						        <td class="total">$15.70</td>
-						      </tr><!-- END TR-->
 						    </tbody>
 						  </table>
 					  </div>

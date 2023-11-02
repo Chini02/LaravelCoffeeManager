@@ -33,7 +33,7 @@
                   <h3>Creamy Latte Coffee</h3>
                   <p class="price"><span>${{ $product->price }}.90</span></p>
                   <p>{{$product->description}}</p>
-                  <form action="{{ route('products.cart', ['id' => $product->id]) }}" method="POST" >
+                  <form action="{{ route('products.cart.add', ['id' => $product->id]) }}" method="POST">
                     @csrf
                     <div class="row align-items-end">
                       <div class="col-md-12">
